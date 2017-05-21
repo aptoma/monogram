@@ -4,7 +4,7 @@
   "author": "Valeri Karpov <val@karpov.io>",
   "dependencies": {
     "debug": "2.6.7",
-    "mongodb": "2.2.24",
+    "mongodb": "2.2.26",
     "rxjs": "5.2.0"
   },
   "devDependencies": {
