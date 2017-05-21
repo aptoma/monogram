@@ -20,14 +20,15 @@ describe('Collection', function() {
         $type: ObjectId,
         $default: () => new ObjectId()
       },
-      x: 'number'
+      x: 'number',
+      createdAt: Date
     }).compile('TestType');
 
-    it('works', async function() {
+    it('validation', async function() {
       const Test = new Collection(db.collection('Test'), TestType);
       const res = await Test.insertOne({ x: 1 });
-      assert.equal(res.result.ok, 1);
-      assert.equal(res.result.n, 1);
+      assert.equal(res.ok, 1);
+      assert.equal(res.n, 1);
 
       let threw = false;
       try {
@@ -40,22 +41,29 @@ describe('Collection', function() {
       assert.ok(threw);
     });
 
-    it('allows transforming result', async function() {
+    it('always set createdAt when inserting', async function() {
+      const startTime = Date.now();
       const Test = new Collection(db.collection('Test'));
-      Test.action$ = Test.action$.map(op => {
-        return Object.assign(op, {
-          promise: op.promise.then(res => res.result)
-        });
+      Test.action$ = Test.action$.map(action => {
+        if (action.action === 'insertOne') {
+          action.params[0].createdAt = new Date();
+        }
+        return action;
       });
 
-      const res = await Test.insertOne({ x: 1 });
+      const doc = { x: 1 };
+      const res = await Test.insertOne(doc);
       assert.equal(res.ok, 1);
       assert.equal(res.n, 1);
+
+      const fromDb = await Test.findOne({ _id: doc._id });
+      assert.ok(fromDb.createdAt);
+      assert.ok(fromDb.createdAt.valueOf() >= startTime);
     });
 
     it('allows transforming errors', async function() {
       const Test = new Collection(db.collection('Test'));
-      Test.action$ = Test.action$.map(op => {
+      Test.op$ = Test.op$.map(op => {
         return Object.assign(op, {
           promise: op.promise.catch(error => {
             throw new Error('woops!');

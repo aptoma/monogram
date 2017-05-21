@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "author": "Valeri Karpov <val@karpov.io>",
   "dependencies": {
-    "debug": "2.2.0",
+    "debug": "2.6.7",
     "mongodb": "2.2.24",
     "rxjs": "5.2.0"
   },
@@ -11,17 +11,17 @@
     "acquit": "0.4.1",
     "acquit-ignore": "0.0.3",
     "acquit-markdown": "0.0.2",
-    "archetype-js": "0.5.1",
-    "mocha": "3.2.0"
+    "archetype-js": "0.6.1",
+    "mocha": "3.4.1"
   },
   "engines": {
-    "node": ">= 6.0.0"
+    "node": ">= 7.6.0"
   },
   "license": "Apache 2.0",
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vkarpov15/monogram.git"
+    "url": "git://github.com/vkarpov15/monogram-2.git"
   },
   "scripts": {
     "test": "mocha test/*.test.js"
