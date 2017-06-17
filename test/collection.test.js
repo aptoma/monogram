@@ -83,5 +83,24 @@ describe('Collection', function() {
 
       assert.ok(threw);
     });
+
+    it('rejecting an action', async function() {
+      const Test = new Collection(db.collection('Test'));
+      Test.action$ = Test.action$.map(op => {
+        return Object.assign(op, {
+          promise: Promise.reject(new Error('No actions allowed!'))
+        });
+      });
+
+      let threw = false;
+      try {
+        await Test.insertOne({ _id: 1 });
+      } catch (error) {
+        threw = true;
+        assert.equal(error.message, 'No actions allowed!');
+      }
+
+      assert.ok(threw);
+    });
   });
 });
