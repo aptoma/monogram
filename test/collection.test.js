@@ -44,8 +44,8 @@ describe('Collection', function() {
     it('always set createdAt when inserting', async function() {
       const startTime = Date.now();
       const Test = new Collection(db.collection('Test'));
-      Test.action$ = Test.action$.map(action => {
-        if (action.action === 'insertOne') {
+      Test.pre(action => {
+        if (action.name === 'insertOne') {
           action.params[0].createdAt = new Date();
         }
         return action;
@@ -63,11 +63,9 @@ describe('Collection', function() {
 
     it('allows transforming errors', async function() {
       const Test = new Collection(db.collection('Test'));
-      Test.op$ = Test.op$.map(op => {
-        return Object.assign(op, {
-          promise: op.promise.catch(error => {
-            throw new Error('woops!');
-          })
+      Test.action$ = Test.action$.subscribe(action => {
+        action.promise = action.promise.catch(error => {
+          throw new Error('woops!');
         });
       });
 
@@ -86,10 +84,8 @@ describe('Collection', function() {
 
     it('rejecting an action', async function() {
       const Test = new Collection(db.collection('Test'));
-      Test.action$ = Test.action$.map(op => {
-        return Object.assign(op, {
-          promise: Promise.reject(new Error('No actions allowed!'))
-        });
+      Test.pre(async function() {
+        throw new Error('No actions allowed!');
       });
 
       let threw = false;
