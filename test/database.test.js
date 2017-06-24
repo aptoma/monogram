@@ -9,9 +9,14 @@ describe('Collection', function() {
 
   before(async function() {
     db = await Database.connect('mongodb://localhost:27017/monogram');
+
+    await db.dropDatabase();
   });
 
-  it('connects', function() {
+  it('connects', async function() {
     assert.ok(db);
+
+    const Test = db.collection('Test');
+    assert.ok(Test.$baseAction);
   });
 });
