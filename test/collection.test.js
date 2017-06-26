@@ -44,10 +44,8 @@ describe('Collection', function() {
     it('always set createdAt when inserting', async function() {
       const startTime = Date.now();
       const Test = new Collection(db.collection('Test'));
-      Test.pre(action => {
-        if (action.name === 'insertOne') {
-          action.params[0].createdAt = new Date();
-        }
+      Test.pre(/insert.*/, action => {
+        action.params[0].createdAt = new Date();
         return action;
       });
 
