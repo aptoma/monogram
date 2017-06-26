@@ -54,7 +54,7 @@ describe('Collection', function() {
       assert.equal(res.ok, 1);
       assert.equal(res.n, 1);
 
-      const fromDb = await Test.findOne({ _id: doc._id });
+      const [fromDb] = await Test.find({ _id: doc._id });
       assert.ok(fromDb.createdAt);
       assert.ok(fromDb.createdAt.valueOf() >= startTime);
     });
