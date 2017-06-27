@@ -5,6 +5,8 @@ const Collection = require('../lib/collection');
 const { MongoClient, ObjectId } = require('mongodb');
 const assert = require('assert');
 
+process.on('unhandledRejection', error => { throw error; });
+
 describe('Collection', function() {
   let db;
 
@@ -12,6 +14,23 @@ describe('Collection', function() {
     db = await MongoClient.connect('mongodb://localhost:27017/monogram');
 
     await db.dropDatabase();
+  });
+
+  describe('#find()', function() {
+    it('chainable', async function() {
+      const Test = new Collection(db.collection('Test'));
+
+      await Test.insertOne({ x: 1 });
+      await Test.insertOne({ x: 2 });
+
+      let res = await Test.find().sort({ x: -1 });
+      assert.equal(res[0].x, 2);
+      assert.equal(res[1].x, 1);
+
+      res = await Test.find().sort({ x: 1 });
+      assert.equal(res[1].x, 2);
+      assert.equal(res[0].x, 1);
+    });
   });
 
   describe('#insertOne()', function() {
