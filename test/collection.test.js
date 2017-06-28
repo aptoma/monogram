@@ -31,6 +31,21 @@ describe('Collection', function() {
       assert.equal(res[1].x, 2);
       assert.equal(res[0].x, 1);
     });
+
+    it('cursor', async function() {
+      const Test = new Collection(db.collection('Test'));
+
+      await Test.insertOne({ x: 1 });
+      await Test.insertOne({ x: 2 });
+
+      const cursor = await Test.find().sort({ x: -1 }).cursor();
+
+      let xs = [];
+      for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+        xs.push(doc.x);
+      }
+      assert.deepEqual(xs, [2, 1]);
+    });
   });
 
   describe('#insertOne()', function() {
