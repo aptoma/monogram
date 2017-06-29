@@ -4,6 +4,7 @@ const Archetype = require('archetype-js');
 const Collection = require('../lib/collection');
 const { MongoClient, ObjectId } = require('mongodb');
 const assert = require('assert');
+const { connect } = require('../');
 
 process.on('unhandledRejection', error => { throw error; });
 
@@ -11,14 +12,18 @@ describe('Collection', function() {
   let db;
 
   before(async function() {
-    db = await MongoClient.connect('mongodb://localhost:27017/monogram');
+    db = await connect('mongodb://localhost:27017/monogram');
+  });
 
+  beforeEach(async function() {
     await db.dropDatabase();
+
+    delete db.collections['Test'];
   });
 
   describe('#find()', function() {
     it('chainable', async function() {
-      const Test = new Collection(db.collection('Test'));
+      const Test = db.collection('Test');
 
       await Test.insertOne({ x: 1 });
       await Test.insertOne({ x: 2 });
@@ -33,7 +38,7 @@ describe('Collection', function() {
     });
 
     it('cursor', async function() {
-      const Test = new Collection(db.collection('Test'));
+      const Test = db.collection('Test');
 
       await Test.insertOne({ x: 1 });
       await Test.insertOne({ x: 2 });
@@ -59,7 +64,7 @@ describe('Collection', function() {
     }).compile('TestType');
 
     it('validation', async function() {
-      const Test = new Collection(db.collection('Test'), TestType);
+      const Test = db.collection('Test', TestType);
       const res = await Test.insertOne({ x: 1 });
       assert.equal(res.ok, 1);
       assert.equal(res.n, 1);
@@ -77,7 +82,7 @@ describe('Collection', function() {
 
     it('always set createdAt when inserting', async function() {
       const startTime = Date.now();
-      const Test = new Collection(db.collection('Test'));
+      const Test = db.collection('Test');
       Test.pre(/insert.*/, action => {
         action.params[0].createdAt = new Date();
         return action;
@@ -94,7 +99,7 @@ describe('Collection', function() {
     });
 
     it('allows transforming errors', async function() {
-      const Test = new Collection(db.collection('Test'));
+      const Test = db.collection('Test');
       Test.action$ = Test.action$.subscribe(action => {
         action.promise = action.promise.catch(error => {
           throw new Error('woops!');
@@ -115,7 +120,7 @@ describe('Collection', function() {
     });
 
     it('rejecting an action', async function() {
-      const Test = new Collection(db.collection('Test'));
+      const Test = db.collection('Test');
       Test.pre(async function() {
         throw new Error('No actions allowed!');
       });
