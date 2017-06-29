@@ -6,5 +6,5 @@ Action-based anti-ODM for MongoDB and Node.js
 
 ```javascript
 const { connect } = require('monogram');
-const db = await connect('mongodb://localhost');
+const db = await connect('mongodb://localhost:27017/test');
 ```
