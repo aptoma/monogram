@@ -13,7 +13,7 @@
     "acquit-markdown": "0.0.2",
     "archetype-js": "0.6.1",
     "mocha": "3.4.1",
-    "mongodb": "2.2.27"
+    "mongodb": "2.2.29"
   },
   "peerDependencies": {
     "mongodb": "2.x"
