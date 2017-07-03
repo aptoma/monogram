@@ -32,9 +32,10 @@ describe('Collection', function() {
       assert.equal(res[0].x, 2);
       assert.equal(res[1].x, 1);
 
-      res = await Test.find().sort({ x: 1 });
+      res = await Test.find().sort({ x: 1 }).project({ _id: 0 });
       assert.equal(res[1].x, 2);
       assert.equal(res[0].x, 1);
+      assert.ok(!res[0]._id);
     });
 
     it('cursor', async function() {
