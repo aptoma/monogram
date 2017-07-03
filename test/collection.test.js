@@ -54,6 +54,23 @@ describe('Collection', function() {
     });
   });
 
+  describe('#find()', function() {
+    it('chainable', async function() {
+      const Test = db.collection('Test');
+
+      await Test.insertOne({ x: 1 });
+      await Test.insertOne({ x: 2 });
+
+      const res = await Test.aggregate([
+        { $project: { y: '$x' } },
+        { $sort: { y: 1 } }
+      ]);
+      assert.equal(res.length, 2);
+      assert.equal(res[0].y, 1);
+      assert.equal(res[1].y, 2);
+    });
+  });
+
   describe('#insertOne()', function() {
     const TestType = new Archetype({
       _id: {
