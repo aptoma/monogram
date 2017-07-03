@@ -84,8 +84,8 @@ describe('Collection', function() {
     it('validation', async function() {
       const Test = db.collection('Test', TestType);
       const res = await Test.insertOne({ x: 1 });
-      assert.equal(res.ok, 1);
-      assert.equal(res.n, 1);
+      assert.equal(res.result.ok, 1);
+      assert.equal(res.result.n, 1);
 
       let threw = false;
       try {
@@ -108,8 +108,8 @@ describe('Collection', function() {
 
       const doc = { x: 1 };
       const res = await Test.insertOne(doc);
-      assert.equal(res.ok, 1);
-      assert.equal(res.n, 1);
+      assert.equal(res.result.ok, 1);
+      assert.equal(res.result.n, 1);
 
       const [fromDb] = await Test.find({ _id: doc._id });
       assert.ok(fromDb.createdAt);
