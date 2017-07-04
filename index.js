@@ -4,6 +4,6 @@ const Database = require('./lib/database');
 exports.Collection = Collection;
 exports.Database = Database;
 
-exports.connect = async function connect(uri, options) {
+exports.connect = function connect(uri, options) {
   return Database.connect(uri, options);
 };
