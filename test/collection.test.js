@@ -1,6 +1,6 @@
 'use strict';
 
-const Archetype = require('archetype-js');
+const Archetype = require('archetype');
 const Collection = require('../lib/collection');
 const { MongoClient, ObjectId } = require('mongodb');
 const assert = require('assert');
@@ -41,16 +41,17 @@ describe('Collection', function() {
     it('cursor', async function() {
       const Test = db.collection('Test');
 
-      await Test.insertOne({ x: 1 });
-      await Test.insertOne({ x: 2 });
+      await Test.insertOne({ x: 1, y: 1 });
+      await Test.insertOne({ x: 2, y: 2 });
 
-      const cursor = await Test.find().sort({ x: -1 }).cursor();
+      const cursor = await Test.find({}, { x: 1 }).cursor();
 
       let xs = [];
       for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
         xs.push(doc.x);
+        assert.ok(!doc.y);
       }
-      assert.deepEqual(xs, [2, 1]);
+      assert.deepEqual(xs.sort(), [1, 2]);
     });
   });
 

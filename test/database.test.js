@@ -1,6 +1,6 @@
 'use strict';
 
-const Archetype = require('archetype-js');
+const Archetype = require('archetype');
 const Database = require('../lib/database');
 const assert = require('assert');
 const { connect } = require('../');
