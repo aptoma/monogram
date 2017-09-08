@@ -135,6 +135,29 @@ describe('Collection', function() {
       assert.ok(fromDb.createdAt.valueOf() >= startTime);
     });
 
+    it('transform to custom action', async function() {
+      const startTime = Date.now();
+      const Test = db.collection('Test');
+      Test.pre('insertOne', action => {
+        action.name = 'fakeInsertOne';
+        return action;
+      });
+
+      let called = 0;
+      Test.action(async function fakeInsertOne() {
+        ++called;
+        return { fake: 1 };
+      });
+
+      const doc = { x: 1 };
+      const res = await Test.insertOne(doc);
+      assert.equal(called, 1);
+      assert.equal(res.fake, 1);
+
+      const [fromDb] = await Test.find({ _id: doc._id });
+      assert.ok(!fromDb);
+    });
+
     it('allows transforming errors', async function() {
       const Test = db.collection('Test');
       Test.action$ = Test.action$.subscribe(action => {
