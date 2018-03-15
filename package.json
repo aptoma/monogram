@@ -1,9 +1,10 @@
 {
   "name": "monogram",
   "description": "TAO (aspect-oriented) modeling for MongoDB",
-  "version": "0.1.0",
+  "version": "0.1.10",
   "author": "Valeri Karpov <val@karpov.io>",
   "dependencies": {
+    "co": "4.6.0",
     "debug": "2.6.7",
     "rxjs": "5.2.0"
   },
@@ -11,7 +12,7 @@
     "acquit": "0.6.1",
     "acquit-ignore": "0.0.3",
     "acquit-markdown": "0.0.8",
-    "archetype-js": "~0.8",
+    "archetype": "~0.8",
     "mocha": "3.4.1",
     "mongodb": "2.2.34"
   },
@@ -25,10 +26,12 @@
     "orm",
     "db",
     "schema",
-    "casting"
+    "casting",
+    "stream",
+    "mongoose"
   ],
   "engines": {
-    "node": ">= 7.6.0"
+    "node": ">= 6.9.0"
   },
   "license": "Apache 2.0",
   "main": "./index.js",

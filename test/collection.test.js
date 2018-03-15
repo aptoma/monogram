@@ -1,6 +1,6 @@
 'use strict';
 
-const Archetype = require('archetype-js');
+const Archetype = require('archetype');
 const Collection = require('../lib/collection');
 const { MongoClient, ObjectId } = require('mongodb');
 const assert = require('assert');
@@ -32,9 +32,43 @@ describe('Collection', function() {
       assert.equal(res[0].x, 2);
       assert.equal(res[1].x, 1);
 
-      res = await Test.find().sort({ x: 1 });
+      res = await Test.find().sort({ x: 1 }).project({ _id: 0 });
       assert.equal(res[1].x, 2);
       assert.equal(res[0].x, 1);
+      assert.ok(!res[0]._id);
+    });
+
+    it('cursor', async function() {
+      const Test = db.collection('Test');
+
+      await Test.insertOne({ x: 1, y: 1 });
+      await Test.insertOne({ x: 2, y: 2 });
+
+      const cursor = await Test.find({}, { x: 1 }).cursor();
+
+      let xs = [];
+      for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
+        xs.push(doc.x);
+        assert.ok(!doc.y);
+      }
+      assert.deepEqual(xs.sort(), [1, 2]);
+    });
+  });
+
+  describe('#find()', function() {
+    it('chainable', async function() {
+      const Test = db.collection('Test');
+
+      await Test.insertOne({ x: 1 });
+      await Test.insertOne({ x: 2 });
+
+      const res = await Test.aggregate([
+        { $project: { y: '$x' } },
+        { $sort: { y: 1 } }
+      ]);
+      assert.equal(res.length, 2);
+      assert.equal(res[0].y, 1);
+      assert.equal(res[1].y, 2);
     });
 
     it('cursor', async function() {
@@ -43,13 +77,16 @@ describe('Collection', function() {
       await Test.insertOne({ x: 1 });
       await Test.insertOne({ x: 2 });
 
-      const cursor = await Test.find().sort({ x: -1 }).cursor();
+      const cursor = await Test.aggregate([
+        { $project: { y: '$x' } },
+        { $sort: { y: 1 } }
+      ]).cursor();
 
-      let xs = [];
+      let ys = [];
       for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {
-        xs.push(doc.x);
+        ys.push(doc.y);
       }
-      assert.deepEqual(xs, [2, 1]);
+      assert.deepEqual(ys, [1, 2]);
     });
   });
 
@@ -66,8 +103,8 @@ describe('Collection', function() {
     it('validation', async function() {
       const Test = db.collection('Test', TestType);
       const res = await Test.insertOne({ x: 1 });
-      assert.equal(res.ok, 1);
-      assert.equal(res.n, 1);
+      assert.equal(res.result.ok, 1);
+      assert.equal(res.result.n, 1);
 
       let threw = false;
       try {
@@ -90,12 +127,35 @@ describe('Collection', function() {
 
       const doc = { x: 1 };
       const res = await Test.insertOne(doc);
-      assert.equal(res.ok, 1);
-      assert.equal(res.n, 1);
+      assert.equal(res.result.ok, 1);
+      assert.equal(res.result.n, 1);
 
       const [fromDb] = await Test.find({ _id: doc._id });
       assert.ok(fromDb.createdAt);
       assert.ok(fromDb.createdAt.valueOf() >= startTime);
+    });
+
+    it('transform to custom action', async function() {
+      const startTime = Date.now();
+      const Test = db.collection('Test');
+      Test.pre('insertOne', action => {
+        action.name = 'fakeInsertOne';
+        return action;
+      });
+
+      let called = 0;
+      Test.action(async function fakeInsertOne() {
+        ++called;
+        return { fake: 1 };
+      });
+
+      const doc = { x: 1 };
+      const res = await Test.insertOne(doc);
+      assert.equal(called, 1);
+      assert.equal(res.fake, 1);
+
+      const [fromDb] = await Test.find({ _id: doc._id });
+      assert.ok(!fromDb);
     });
 
     it('allows transforming errors', async function() {

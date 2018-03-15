@@ -1,31 +1,27 @@
-# monogram
+const _ = require('lodash');
+const assert = require('assert');
+const monogram = require('../');
+const util = require('util');
 
-Action-based anti-ODM for MongoDB and Node.js
+describe('Usage', function() {
+  let db;
 
-Read the [intro blog post here](http://thecodebarbarian.com/introducing-monogram-the-anti-odm-for-mongodb-nodejs.html).
+  beforeEach(async function() {
+    db = await monogram.connect('mongodb://localhost:27017/test');
+  });
 
-## Usage
+  afterEach(async function() {
+    await db.db.close();
+  });
 
-```javascript
-const { connect } = require('monogram');
-const db = await connect('mongodb://localhost:27017/test');
-```
-
-
-# Usage
-
-## Actions
-
-
-From an end developer perspective, monogram behaves just like the
-[MongoDB Node.js driver](https://www.npmjs.com/package/mongodb).
-The key difference is that monogram converts collection functions
-into _actions_ under the hood. Actions are an object representation
-of a function call.
-
-
-```javascript
-
+  /**
+   * From an end developer perspective, monogram behaves just like the
+   * [MongoDB Node.js driver](https://www.npmjs.com/package/mongodb).
+   * The key difference is that monogram converts collection functions
+   * into _actions_ under the hood. Actions are an object representation
+   * of a function call.
+   */
+  it('Actions', async function() {
     const Test = db.collection('Test');
 
     let called = 0;
@@ -47,24 +43,19 @@ of a function call.
     await Test.insertOne({ hello: 'world' });
 
     assert.equal(called, 1);
-  
-```
+  });
 
-## Motivation: Logging
-
-
-Monogram isn't an ODM/ORM like its uncle [mongoose](https://www.npmjs.com/package/mongoose),
-It's a new abstraction entirely. You can call it an AOM, "action-object mapping".
-Why is this abstraction better? Consider the problem of logging all
-database operations to the console in an ODM. In mongoose, this is hard,
-because there's a lot of different [types of middleware](http://mongoosejs.com/docs/middleware.html).
-In monogram, this is trivial, because all database operations are
-represented in a common form, actions, and all actions go through
-one pipeline.
-
-
-```javascript
-
+  /**
+   * Monogram isn't an ODM/ORM like its uncle [mongoose](https://www.npmjs.com/package/mongoose),
+   * It's a new abstraction entirely. You can call it an AOM, "action-object mapping".
+   * Why is this abstraction better? Consider the problem of logging all
+   * database operations to the console in an ODM. In mongoose, this is hard,
+   * because there's a lot of different [types of middleware](http://mongoosejs.com/docs/middleware.html).
+   * In monogram, this is trivial, because all database operations are
+   * represented in a common form, actions, and all actions go through
+   * one pipeline.
+   */
+  it('Motivation: Logging', async function() {
     const Test = db.collection('Test');
 
     let called = 0;
@@ -85,24 +76,19 @@ one pipeline.
     });
 
     assert.equal(called, 1);
-  
-```
+  });
 
-## Enforcing Internal Best Practices
-
-
-The purpose of monogram is to allow you to enforce best practices, not
-to prescribe best practices. Beginners are best served using a tool like
-[mongoose](https://www.npmjs.com/package/mongoose), which has a lot of
-baked-in best practices to prevent you from shooting yourself in the foot.
-Monogram is more for advanced users who have established best practices
-they want to enforce. For example, here's how you would prevent users
-from calling `updateOne()` or `updateMany()` without any [update operators](https://docs.mongodb.com/manual/reference/operator/update/),
-which would [overwrite the document](https://docs.mongodb.com/v3.2/reference/method/db.collection.replaceOne/).
-
-
-```javascript
-
+  /**
+   * The purpose of monogram is to allow you to enforce best practices, not
+   * to prescribe best practices. Beginners are best served using a tool like
+   * [mongoose](https://www.npmjs.com/package/mongoose), which has a lot of
+   * baked-in best practices to prevent you from shooting yourself in the foot.
+   * Monogram is more for advanced users who have established best practices
+   * they want to enforce. For example, here's how you would prevent users
+   * from calling `updateOne()` or `updateMany()` without any [update operators](https://docs.mongodb.com/manual/reference/operator/update/),
+   * which would [overwrite the document](https://docs.mongodb.com/v3.2/reference/method/db.collection.replaceOne/).
+   */
+  it('Enforcing Internal Best Practices', async function() {
     const Test = db.collection('Test');
 
     let called = 0;
@@ -132,5 +118,5 @@ which would [overwrite the document](https://docs.mongodb.com/v3.2/reference/met
     }
 
     assert.ok(threw);
-  
-```
+  });
+});
