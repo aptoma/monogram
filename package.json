@@ -8,12 +8,12 @@
     "rxjs": "5.2.0"
   },
   "devDependencies": {
-    "acquit": "0.4.1",
+    "acquit": "0.6.1",
     "acquit-ignore": "0.0.3",
-    "acquit-markdown": "0.0.2",
-    "archetype-js": "0.6.1",
+    "acquit-markdown": "0.0.8",
+    "archetype-js": "~0.8",
     "mocha": "3.4.1",
-    "mongodb": "2.2.29"
+    "mongodb": "2.2.34"
   },
   "peerDependencies": {
     "mongodb": "2.x"
