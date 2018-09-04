@@ -44,7 +44,7 @@ describe('Collection', function() {
       await Test.insertOne({ x: 1, y: 1 });
       await Test.insertOne({ x: 2, y: 2 });
 
-      const cursor = await Test.find({}, { x: 1 }).cursor();
+      const cursor = await Test.find({}).project({ x: 1 }).cursor();
 
       let xs = [];
       for (let doc = await cursor.next(); doc != null; doc = await cursor.next()) {

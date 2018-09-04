@@ -14,10 +14,10 @@
     "acquit-markdown": "0.0.8",
     "archetype": "~0.8",
     "mocha": "3.4.1",
-    "mongodb": "2.2.34"
+    "mongodb": "3.x"
   },
   "peerDependencies": {
-    "mongodb": "2.x"
+    "mongodb": "2.x || 3.x"
   },
   "keywords": [
     "mongodb",

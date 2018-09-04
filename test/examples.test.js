@@ -11,7 +11,7 @@ describe('Usage', function() {
   });
 
   afterEach(async function() {
-    await db.db.close();
+    await db.client ? db.client.close() : db.db.close();
   });
 
   /**
