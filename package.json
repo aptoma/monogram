@@ -1,11 +1,11 @@
 {
   "name": "monogram",
   "description": "TAO (aspect-oriented) modeling for MongoDB",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "author": "Valeri Karpov <val@karpov.io>",
   "dependencies": {
     "co": "4.6.0",
-    "debug": "2.6.7",
+    "debug": "3.1.0",
     "rxjs": "5.2.0"
   },
   "devDependencies": {
