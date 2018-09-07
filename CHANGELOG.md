@@ -1,3 +1,7 @@
+0.2.2 / 2018-09-07
+==================
+ * fix(find): use `fields` instead of `projection` for mongodb driver 2.x
+
 0.2.1 / 2018-09-07
 ==================
  * fix(find): make project() use projection option instead of fields
