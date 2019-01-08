@@ -1,3 +1,7 @@
+0.2.5 / 2019-01-08
+==================
+ * feat(collection): set `originalStack` property on actions
+
 0.2.4 / 2018-09-13
 ==================
  * fix(collection): ensure error.stack prints correctly
