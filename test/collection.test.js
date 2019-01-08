@@ -179,6 +179,15 @@ describe('Collection', function() {
       assert.ok(threw);
     });
 
+    it('sets originalStack', async function setOriginalStack() {
+      const Test = db.collection('Test');
+
+      const err = await Test.insertMany([{ _id: 1 }, { _id: 1 }]).
+        then(() => null, err => err);
+      assert.ok(err.originalStack);
+      assert.ok(err.originalStack.indexOf('setOriginalStack') !== -1, err.originalStack);
+    });
+
     it('rejecting an action', async function() {
       const Test = db.collection('Test');
       Test.pre(async function() {
