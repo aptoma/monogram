@@ -41,7 +41,7 @@
   "main": "./index.js",
   "repository": {
     "type": "git",
-    "url": "git://github.com/vkarpov15/monogram.git"
+    "url": "git://github.com/aptoma/monogram.git"
   },
   "scripts": {
     "test": "mocha test/*.test.js --exit",
