@@ -12,7 +12,7 @@ describe('Collection', function() {
   let db;
 
   before(async function() {
-    db = await connect('mongodb://localhost:27017/monogram');
+    db = await connect(`mongodb://localhost${process.env.MONGO_PORT ? `:${process.env.MONGO_PORT}` : ''}/monogram`);
   });
 
   beforeEach(async function() {
@@ -103,8 +103,8 @@ describe('Collection', function() {
     it('validation', async function() {
       const Test = db.collection('Test', TestType);
       const res = await Test.insertOne({ x: 1 });
-      assert.equal(res.result.ok, 1);
-      assert.equal(res.result.n, 1);
+
+      assert.equal(res.acknowledged, true);
 
       let threw = false;
       try {
@@ -127,8 +127,7 @@ describe('Collection', function() {
 
       const doc = { x: 1 };
       const res = await Test.insertOne(doc);
-      assert.equal(res.result.ok, 1);
-      assert.equal(res.result.n, 1);
+      assert.equal(res.acknowledged, true);
 
       const [fromDb] = await Test.find({ _id: doc._id });
       assert.ok(fromDb.createdAt);

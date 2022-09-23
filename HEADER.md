@@ -7,6 +7,6 @@ Read the [intro blog post here](http://thecodebarbarian.com/introducing-monogram
 ## Usage
 
 ```javascript
-const { connect } = require('monogram');
+const { connect } = require('@aptoma/monogram');
 const db = await connect('mongodb://localhost:27017/test');
 ```
