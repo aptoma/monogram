@@ -1,23 +1,75 @@
-0.2.5 / 2019-01-08
-==================
- * feat(collection): set `originalStack` property on actions
+### Changelog
 
-0.2.4 / 2018-09-13
-==================
- * fix(collection): ensure error.stack prints correctly
+#### 1.0.0 2022-09-23
 
-0.2.3 / 2018-09-10
-==================
- * fix: use original stack trace when reporting error in async action
-
-0.2.2 / 2018-09-07
-==================
- * fix(find): use `fields` instead of `projection` for mongodb driver 2.x
-
-0.2.1 / 2018-09-07
-==================
- * fix(find): make project() use projection option instead of fields
-
-0.2.0 / 2018-09-04
-==================
- * feat: support MongoDB driver 3.x
+- fix(collection): don't set cursor option if cursor() called with 0 args [`#1`](https://github.com/aptoma/monogram/issues/1)
+- Add release scripts [`92ab194`](https://github.com/aptoma/monogram/commit/92ab19470b5c805f88569ce002f1b4904eb7e699)
+- Update dependencies [`fcefdd2`](https://github.com/aptoma/monogram/commit/fcefdd2d210c6e8cfb39de9650f2565b47e6f0c8)
+- chore: release 0.2.5 [`a8c3800`](https://github.com/aptoma/monogram/commit/a8c38002d5071f463dec2737168a32d3f594a7fc)
+- feat: set originalStack property on actions [`9908150`](https://github.com/aptoma/monogram/commit/99081503edfd758b822083da3ae7c3bbf8a4cce6)
+- chore: release 0.2.4 [`a0a6835`](https://github.com/aptoma/monogram/commit/a0a683525c17632f853dbe85e79518e00a899698)
+- fix(collection): ensure error.stack prints correctly [`fa97d25`](https://github.com/aptoma/monogram/commit/fa97d255f5ffcab050829f50ea80e26e5e58b848)
+- chore: release 0.2.3 [`8017938`](https://github.com/aptoma/monogram/commit/801793802462fa4cb501ae37f5ec026b43341d58)
+- fix: use original stack trace when reporting error in async action [`147b4b3`](https://github.com/aptoma/monogram/commit/147b4b3d7607f7e00d883af94389b0d426c7d2f1)
+- chore: release 0.2.2 [`51a2e3d`](https://github.com/aptoma/monogram/commit/51a2e3d0434532e485ebd06237ac9211af0f8abf)
+- fix(find): use `fields` instead of `projection` for mongodb driver 2.x [`9f1304b`](https://github.com/aptoma/monogram/commit/9f1304b091c09ce12d4809076bd13f06d0d2df58)
+- chore: release 0.2.1 [`dde6df2`](https://github.com/aptoma/monogram/commit/dde6df271a0d5f00e7cd335daad989cba8830cb5)
+- fix(find): make project() use projection option instead of fields [`e318d45`](https://github.com/aptoma/monogram/commit/e318d45476dc40d063c6c451b1ed38af44654e03)
+- chore: release 0.2.0 [`cec5353`](https://github.com/aptoma/monogram/commit/cec53535a465d8454522e543b8c5ee4af4cc43b5)
+- feat: support MongoDB driver 3.x [`c94f86f`](https://github.com/aptoma/monogram/commit/c94f86f3cad83e048e014dbb8d6ea31f55f3fca7)
+- chore: bump deps [`7286db1`](https://github.com/aptoma/monogram/commit/7286db1fb1ae580b7dd45bf0b36b5f034c99993d)
+- chore: bump acquit re: security warning [`ebe829f`](https://github.com/aptoma/monogram/commit/ebe829f951241888ad09584a1882565998d66544)
+- chore: release 0.1.10 [`5552952`](https://github.com/aptoma/monogram/commit/555295280bd4278c8d39a26b121775833af780b4)
+- docs: fix link re: #2 [`589361d`](https://github.com/aptoma/monogram/commit/589361dca8e214207e4539afb92bdebb0e9f46a0)
+- chore: release 0.1.9 [`adb04e9`](https://github.com/aptoma/monogram/commit/adb04e91e102a540fa6322d6f329e73f8256d6c8)
+- docs: add keywords and intro blog post link re: #4 [`cb0544f`](https://github.com/aptoma/monogram/commit/cb0544fd0b91e2a744c3b13d2040c4579020da3e)
+- chore: bump lockfile [`0e8c201`](https://github.com/aptoma/monogram/commit/0e8c2014eb66a7c5a6bcdaa4fced812a10ee84cb)
+- chore: release 0.1.8 [`f79154e`](https://github.com/aptoma/monogram/commit/f79154ea48349e7a494201e285c87eaaa52d609a)
+- fix(collection): allow transforming actions to custom actions [`3d5b86e`](https://github.com/aptoma/monogram/commit/3d5b86e93d066b2f4048cb73460cf201b9b69ef4)
+- chore: release 0.1.7 [`de6192e`](https://github.com/aptoma/monogram/commit/de6192e91f2e956ee6809d8503cb61f5a0c5abaa)
+- chore: rename archetype-js -&gt; archetype [`ef590d2`](https://github.com/aptoma/monogram/commit/ef590d28c9d8c181df18be8aa556f45a4caaf816)
+- chore: add lockfile [`0637ab0`](https://github.com/aptoma/monogram/commit/0637ab089b810dff38f4bfeb0105e107ee4939fb)
+- chore: upgrade mongodb in dev [`033a91c`](https://github.com/aptoma/monogram/commit/033a91c68da17e9928f760a82f01c7d62f691f10)
+- chore: release 0.1.6 [`512f5ad`](https://github.com/aptoma/monogram/commit/512f5adca99bf11bf9c728faab34acdc43126635)
+- fix: findOneAndRemove -&gt; findOneAndDelete [`160aa39`](https://github.com/aptoma/monogram/commit/160aa393c899ac0956114a63369e90d3e2786808)
+- chore: release 0.1.5 [`f3bcf3c`](https://github.com/aptoma/monogram/commit/f3bcf3caa0e4c1a4400975dce888307bc366f05a)
+- chore: add better docs [`63718b8`](https://github.com/aptoma/monogram/commit/63718b8dbcd5ddffaa362c4df1a3697af422bbc3)
+- test: add coverage for agg cursor [`4652126`](https://github.com/aptoma/monogram/commit/4652126bfab766d0c10d362ed56ee2f0465af368)
+- chore: release 0.1.4 [`7d96e6a`](https://github.com/aptoma/monogram/commit/7d96e6a633f9a2f3af4318b70b9dfb24768b07a2)
+- chore: remove another async bit [`b66a901`](https://github.com/aptoma/monogram/commit/b66a9013cc65353579671910c8c7aa8bb35f5fad)
+- chore: release 0.1.3 [`9f46e91`](https://github.com/aptoma/monogram/commit/9f46e91540980e7b071f2af770112e07b3fb6bf8)
+- refactor: remove insertOne/insertMany result middleware [`b360416`](https://github.com/aptoma/monogram/commit/b360416272ca2fdd3582999e0533beca176c757a)
+- chore: release 0.1.2 [`515f6b2`](https://github.com/aptoma/monogram/commit/515f6b23a53f34a9851f99ed32a1d297ddb63a2c)
+- refactor: remove async/await internally in favor of co for node 6 support [`d4b4ec0`](https://github.com/aptoma/monogram/commit/d4b4ec068a0f8504e3ef77fa583c7e1bc91a5555)
+- chore: release 0.1.1 [`58c1386`](https://github.com/aptoma/monogram/commit/58c1386f187f0c79aecf68a267c20b9d9dd3867b)
+- feat: add aggregate [`db8cd12`](https://github.com/aptoma/monogram/commit/db8cd1292cdc80dd6b4927291594beeab358ba6e)
+- feat: support cursor.project() [`37fd61f`](https://github.com/aptoma/monogram/commit/37fd61f6e599028ad3937042e203d68a40bcec4b)
+- chore: upgrade to mongodb 2.2.29 [`6fd823c`](https://github.com/aptoma/monogram/commit/6fd823c7b62432ad429b57c0240820fb00d26421)
+- chore: release 0.1.0 [`59a2e7d`](https://github.com/aptoma/monogram/commit/59a2e7dcd20f3686c562ce7fb90f036177d0cae4)
+- chore: add better readme [`2300c1e`](https://github.com/aptoma/monogram/commit/2300c1e93a81dfec7277901362da7e0871b64cb0)
+- chore: use connect() for tests [`ce0b9b3`](https://github.com/aptoma/monogram/commit/ce0b9b343298f648a6305f5cfafe0553991343f7)
+- feat: support cursor() for find() [`a09c780`](https://github.com/aptoma/monogram/commit/a09c780aa455259560785328cf9e1172388f4346)
+- feat: support sort/limit/skip chaining [`6b5f456`](https://github.com/aptoma/monogram/commit/6b5f456bad77904601cce2389a6b457836afadda)
+- feat: add support for chaining find [`a80398a`](https://github.com/aptoma/monogram/commit/a80398aaea56b2b49c2bf62d2de3cc745945e3fc)
+- feat: add .then() to cursor [`6e818c6`](https://github.com/aptoma/monogram/commit/6e818c61d4f101bb3c50266f71360f6dbe2ac74f)
+- chore: improve package.json [`e2116c9`](https://github.com/aptoma/monogram/commit/e2116c90cd459c1651a9b39827d3e158c40398a4)
+- feat: support args to pre() [`a5ebdc3`](https://github.com/aptoma/monogram/commit/a5ebdc31950dd525595dae103cdecec1d8a57346)
+- add collections getter [`9285e61`](https://github.com/aptoma/monogram/commit/9285e619b49d27465a01a92461a3c92acd1d6faf)
+- chore: rename to collections [`3b41dcf`](https://github.com/aptoma/monogram/commit/3b41dcfba48457796c6ffd2432e4e31c1ce205c0)
+- chore: remove broken import [`3efb454`](https://github.com/aptoma/monogram/commit/3efb454d9e3c2f1c165abb5c1e2dbf7319f702f8)
+- chore: add index [`8f13511`](https://github.com/aptoma/monogram/commit/8f13511516fa4edd12b7dc846858055ff3309907)
+- chore: add dropDatabase() to db [`d590886`](https://github.com/aptoma/monogram/commit/d590886daf6ecc43d9e7be273625b717d48b6968)
+- test: add basic tests for db [`b4066cc`](https://github.com/aptoma/monogram/commit/b4066cc539cb20f38815909276fc6427bdf0809e)
+- chore: rename db -&gt; database [`0808bc0`](https://github.com/aptoma/monogram/commit/0808bc0094ff0861a05a68c4921d7290d3bb2f5c)
+- feat: add db class [`14b5c90`](https://github.com/aptoma/monogram/commit/14b5c90236b9aa6e9e4b93ec780e9a7c1d0dfd3b)
+- refactor: separate out into pre() and action$ [`d2e82c4`](https://github.com/aptoma/monogram/commit/d2e82c42c37020b6d71a6b28fe7d00ae437ea3f8)
+- feat: add pre/post [`71797c1`](https://github.com/aptoma/monogram/commit/71797c140f841a74284e69e0b2416493e89091d1)
+- allow rejecting an action [`527eb5d`](https://github.com/aptoma/monogram/commit/527eb5db6d9a589b865b4c1bc324e200e6aecf34)
+- make action$ have a promise [`47942b0`](https://github.com/aptoma/monogram/commit/47942b02e2fbb708b8bad6f217e1e3b8adb9f258)
+- refactor: use external facing action() for base actions [`d8ad360`](https://github.com/aptoma/monogram/commit/d8ad360d02e3743a4ba674c19996aea077707707)
+- refactor: allow custom action functions [`ae89462`](https://github.com/aptoma/monogram/commit/ae89462fa690578ffdb9aa581f5fdcbc87f9e7fe)
+- bump mongodb [`0584307`](https://github.com/aptoma/monogram/commit/0584307c23b813ded818a19fce3805c11f237e56)
+- add createdAt example [`0691267`](https://github.com/aptoma/monogram/commit/06912675e3d75722859d9d38d855a34685a8b255)
+- chore: remove co and just use async/await [`4a4cf30`](https://github.com/aptoma/monogram/commit/4a4cf303ea2385ddd5e435e1d4678adaf39ebb7e)
+- initial PoC [`36f0d8f`](https://github.com/aptoma/monogram/commit/36f0d8fc3edce0547f860d677a49af141ea2636d)
+- Initial commit [`c8388a0`](https://github.com/aptoma/monogram/commit/c8388a003fa4d014dcb8c5f09e4cee62aacff034)

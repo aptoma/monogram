@@ -1,7 +1,7 @@
 {
   "name": "@aptoma/monogram",
   "description": "TAO (aspect-oriented) modeling for MongoDB",
-  "version": "0.2.5",
+  "version": "1.0.0",
   "author": "Valeri Karpov <val@karpov.io>",
   "contributors": [
     "Martin Jonsson <martin@aptoma.com>"
