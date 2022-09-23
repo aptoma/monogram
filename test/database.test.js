@@ -9,7 +9,7 @@ describe('Collection', function() {
   let db;
 
   before(async function() {
-    db = await connect('mongodb://localhost:27017/monogram');
+    db = await connect(`mongodb://localhost${process.env.MONGO_PORT ? `:${process.env.MONGO_PORT}` : ''}/monogram`);
 
     await db.dropDatabase();
   });

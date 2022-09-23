@@ -1,0 +1,27 @@
+language: node_js
+
+dist: focal
+
+node_js:
+- 14
+- 16
+- 18
+
+env:
+  jobs:
+    - MONGODB_VERSION=4.4
+    - MONGODB_VERSION=5.0
+
+cache:
+  pip: true
+  apt: true
+  directories:
+    - node_modules
+
+before_install:
+  - sudo systemctl stop mongod
+
+script:
+  - ./node_modules/.bin/mongodb-runner start
+  - npm test
+  - ./node_modules/.bin/mongodb-runner stop

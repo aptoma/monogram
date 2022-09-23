@@ -1,4 +1,3 @@
-const _ = require('lodash');
 const assert = require('assert');
 const monogram = require('../');
 const util = require('util');
@@ -7,7 +6,7 @@ describe('Usage', function() {
   let db;
 
   beforeEach(async function() {
-    db = await monogram.connect('mongodb://localhost:27017/test');
+    db = await monogram.connect(`mongodb://localhost${process.env.MONGO_PORT ? `:${process.env.MONGO_PORT}` : ''}/monogram`);
   });
 
   afterEach(async function() {
@@ -30,7 +29,9 @@ describe('Usage', function() {
       // An _action_ is an object representation of a function call.
       // It has an `_id` property to uniquely identify it, and
       // some other properties:
-      assert.deepEqual(_.omit(action, ['_id']), {
+
+      const {_id, ...actionWithoutId} = action;
+      assert.deepEqual(actionWithoutId, {
         collection: 'Test', // The name of the collection
         name: 'insertOne', // The name of the function called
         params: [{

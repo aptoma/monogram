@@ -1,23 +1,25 @@
 {
-  "name": "monogram",
+  "name": "@aptoma/monogram",
   "description": "TAO (aspect-oriented) modeling for MongoDB",
   "version": "0.2.5",
   "author": "Valeri Karpov <val@karpov.io>",
+  "contributors": [
+    "Martin Jonsson <martin@aptoma.com>"
+  ],
   "dependencies": {
-    "co": "4.6.0",
-    "debug": "3.1.0",
-    "rxjs": "5.2.0"
+    "rxjs": "^7.5.6"
   },
   "devDependencies": {
     "acquit": "1.x",
-    "acquit-ignore": "0.1.0",
+    "acquit-ignore": "^0.2.0",
     "acquit-markdown": "0.1.0",
-    "archetype": "~0.8",
-    "mocha": "5.x",
-    "mongodb": "3.x"
+    "archetype": "^0.13.0",
+    "mocha": "^10.0.0",
+    "mongodb": "^4.10.0",
+    "mongodb-runner": "^4.9.0"
   },
   "peerDependencies": {
-    "mongodb": "2.x || 3.x"
+    "mongodb": "4.x"
   },
   "keywords": [
     "mongodb",
@@ -31,7 +33,7 @@
     "mongoose"
   ],
   "engines": {
-    "node": ">= 6.9.0"
+    "node": ">= 14"
   },
   "license": "Apache 2.0",
   "main": "./index.js",
@@ -40,6 +42,6 @@
     "url": "git://github.com/vkarpov15/monogram.git"
   },
   "scripts": {
-    "test": "mocha test/*.test.js"
+    "test": "mocha test/*.test.js --exit"
   }
 }
