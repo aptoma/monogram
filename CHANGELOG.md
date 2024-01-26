@@ -1,5 +1,10 @@
 ### Changelog
 
+#### [2.0.0](https://github.com/aptoma/monogram/compare/1.0.0...2.0.0) 2024-01-26
+
+- Drop support for node 14 and 16 [`ea29028`](https://github.com/aptoma/monogram/commit/ea290284f433b0891071bf9dc63a02a5d03a919c)
+- Update repo url in package.json [`876d984`](https://github.com/aptoma/monogram/commit/876d9846a7088dcee905d71a24b284d0d81fcdd2)
+
 #### 1.0.0 2022-09-23
 
 - fix(collection): don't set cursor option if cursor() called with 0 args [`#1`](https://github.com/aptoma/monogram/issues/1)
