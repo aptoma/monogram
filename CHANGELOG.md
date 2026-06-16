@@ -1,13 +1,16 @@
 ### Changelog
 
-#### [2.0.0](https://github.com/aptoma/monogram/compare/1.0.0...2.0.0) 2024-01-26
+#### [2.0.1](https://github.com/aptoma/monogram/compare/2.0.0...2.0.1) 2026-06-16
+
+- fix: allow mongodb 7 peer dependency [`13d2fe9`](https://github.com/aptoma/monogram/commit/13d2fe9a95f78dd525beed43e18538b1be23a409)
+
+### [2.0.0](https://github.com/aptoma/monogram/compare/1.0.0...2.0.0) 2024-01-26
 
 - Drop support for node 14 and 16 [`ea29028`](https://github.com/aptoma/monogram/commit/ea290284f433b0891071bf9dc63a02a5d03a919c)
 - Update repo url in package.json [`876d984`](https://github.com/aptoma/monogram/commit/876d9846a7088dcee905d71a24b284d0d81fcdd2)
 
-#### 1.0.0 2022-09-23
+### [1.0.0](https://github.com/aptoma/monogram/compare/v0.1.8...1.0.0) 2022-09-23
 
-- fix(collection): don't set cursor option if cursor() called with 0 args [`#1`](https://github.com/aptoma/monogram/issues/1)
 - Add release scripts [`92ab194`](https://github.com/aptoma/monogram/commit/92ab19470b5c805f88569ce002f1b4904eb7e699)
 - Update dependencies [`fcefdd2`](https://github.com/aptoma/monogram/commit/fcefdd2d210c6e8cfb39de9650f2565b47e6f0c8)
 - chore: release 0.2.5 [`a8c3800`](https://github.com/aptoma/monogram/commit/a8c38002d5071f463dec2737168a32d3f594a7fc)
@@ -29,27 +32,55 @@
 - chore: release 0.1.9 [`adb04e9`](https://github.com/aptoma/monogram/commit/adb04e91e102a540fa6322d6f329e73f8256d6c8)
 - docs: add keywords and intro blog post link re: #4 [`cb0544f`](https://github.com/aptoma/monogram/commit/cb0544fd0b91e2a744c3b13d2040c4579020da3e)
 - chore: bump lockfile [`0e8c201`](https://github.com/aptoma/monogram/commit/0e8c2014eb66a7c5a6bcdaa4fced812a10ee84cb)
+
+#### [v0.1.8](https://github.com/aptoma/monogram/compare/v0.1.7...v0.1.8) 2017-09-08
+
 - chore: release 0.1.8 [`f79154e`](https://github.com/aptoma/monogram/commit/f79154ea48349e7a494201e285c87eaaa52d609a)
 - fix(collection): allow transforming actions to custom actions [`3d5b86e`](https://github.com/aptoma/monogram/commit/3d5b86e93d066b2f4048cb73460cf201b9b69ef4)
+
+#### [v0.1.7](https://github.com/aptoma/monogram/compare/v0.1.6...v0.1.7) 2017-08-28
+
+- fix(collection): don't set cursor option if cursor() called with 0 args [`#1`](https://github.com/aptoma/monogram/issues/1)
 - chore: release 0.1.7 [`de6192e`](https://github.com/aptoma/monogram/commit/de6192e91f2e956ee6809d8503cb61f5a0c5abaa)
 - chore: rename archetype-js -&gt; archetype [`ef590d2`](https://github.com/aptoma/monogram/commit/ef590d28c9d8c181df18be8aa556f45a4caaf816)
 - chore: add lockfile [`0637ab0`](https://github.com/aptoma/monogram/commit/0637ab089b810dff38f4bfeb0105e107ee4939fb)
 - chore: upgrade mongodb in dev [`033a91c`](https://github.com/aptoma/monogram/commit/033a91c68da17e9928f760a82f01c7d62f691f10)
+
+#### [v0.1.6](https://github.com/aptoma/monogram/compare/v0.1.5...v0.1.6) 2017-07-21
+
 - chore: release 0.1.6 [`512f5ad`](https://github.com/aptoma/monogram/commit/512f5adca99bf11bf9c728faab34acdc43126635)
 - fix: findOneAndRemove -&gt; findOneAndDelete [`160aa39`](https://github.com/aptoma/monogram/commit/160aa393c899ac0956114a63369e90d3e2786808)
+
+#### [v0.1.5](https://github.com/aptoma/monogram/compare/v0.1.4...v0.1.5) 2017-07-17
+
 - chore: release 0.1.5 [`f3bcf3c`](https://github.com/aptoma/monogram/commit/f3bcf3caa0e4c1a4400975dce888307bc366f05a)
 - chore: add better docs [`63718b8`](https://github.com/aptoma/monogram/commit/63718b8dbcd5ddffaa362c4df1a3697af422bbc3)
 - test: add coverage for agg cursor [`4652126`](https://github.com/aptoma/monogram/commit/4652126bfab766d0c10d362ed56ee2f0465af368)
+
+#### [v0.1.4](https://github.com/aptoma/monogram/compare/v0.1.3...v0.1.4) 2017-07-03
+
 - chore: release 0.1.4 [`7d96e6a`](https://github.com/aptoma/monogram/commit/7d96e6a633f9a2f3af4318b70b9dfb24768b07a2)
 - chore: remove another async bit [`b66a901`](https://github.com/aptoma/monogram/commit/b66a9013cc65353579671910c8c7aa8bb35f5fad)
+
+#### [v0.1.3](https://github.com/aptoma/monogram/compare/v0.1.2...v0.1.3) 2017-07-03
+
 - chore: release 0.1.3 [`9f46e91`](https://github.com/aptoma/monogram/commit/9f46e91540980e7b071f2af770112e07b3fb6bf8)
 - refactor: remove insertOne/insertMany result middleware [`b360416`](https://github.com/aptoma/monogram/commit/b360416272ca2fdd3582999e0533beca176c757a)
+
+#### [v0.1.2](https://github.com/aptoma/monogram/compare/v0.1.1...v0.1.2) 2017-07-03
+
 - chore: release 0.1.2 [`515f6b2`](https://github.com/aptoma/monogram/commit/515f6b23a53f34a9851f99ed32a1d297ddb63a2c)
 - refactor: remove async/await internally in favor of co for node 6 support [`d4b4ec0`](https://github.com/aptoma/monogram/commit/d4b4ec068a0f8504e3ef77fa583c7e1bc91a5555)
+
+#### [v0.1.1](https://github.com/aptoma/monogram/compare/v0.1.0...v0.1.1) 2017-07-02
+
 - chore: release 0.1.1 [`58c1386`](https://github.com/aptoma/monogram/commit/58c1386f187f0c79aecf68a267c20b9d9dd3867b)
 - feat: add aggregate [`db8cd12`](https://github.com/aptoma/monogram/commit/db8cd1292cdc80dd6b4927291594beeab358ba6e)
 - feat: support cursor.project() [`37fd61f`](https://github.com/aptoma/monogram/commit/37fd61f6e599028ad3937042e203d68a40bcec4b)
 - chore: upgrade to mongodb 2.2.29 [`6fd823c`](https://github.com/aptoma/monogram/commit/6fd823c7b62432ad429b57c0240820fb00d26421)
+
+#### v0.1.0 2017-06-29
+
 - chore: release 0.1.0 [`59a2e7d`](https://github.com/aptoma/monogram/commit/59a2e7dcd20f3686c562ce7fb90f036177d0cae4)
 - chore: add better readme [`2300c1e`](https://github.com/aptoma/monogram/commit/2300c1e93a81dfec7277901362da7e0871b64cb0)
 - chore: use connect() for tests [`ce0b9b3`](https://github.com/aptoma/monogram/commit/ce0b9b343298f648a6305f5cfafe0553991343f7)
