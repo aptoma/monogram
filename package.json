@@ -16,12 +16,12 @@
     "archetype": "^0.13.0",
     "auto-changelog": "^2.4.0",
     "mocha": "^10.2.0",
-    "mongodb": "^6.3.0",
+    "mongodb": "^7.2.0",
     "mongodb-runner": "^4.9.0",
     "release-it": "^15.4.2"
   },
   "peerDependencies": {
-    "mongodb": "6.x"
+    "mongodb": "6.x || 7.x"
   },
   "keywords": [
     "mongodb",
